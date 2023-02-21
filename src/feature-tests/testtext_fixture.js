@@ -1,4 +1,5 @@
-const {Shop, Item} = require('../src/gilded_rose');
+const Shop = require('../shop');
+const Item = require('../item');
 
 const items = [
   new Item('+5 Dexterity Vest', 10, 20),
@@ -14,7 +15,7 @@ const items = [
   new Item('Conjured Mana Cake', 3, 6),
 ];
 
-const days = Number(process.argv[2]) || 2;
+const days = Number(process.argv[20]) || 20;
 const gildedRose = new Shop(items);
 
 console.log('OMGHAI!');
