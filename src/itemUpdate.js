@@ -26,9 +26,33 @@ class ItemUpdate {
     item.quality === 50 ? item.quality : console.log(error);
   }
 
-  conjured(item) {}
+  conjured(item) {
+    const isExpired = item.sellIn <= 0;
 
-  backstagePass(item) {}
+    if (item.quality > 0) {
+      item.quality -= isExpired ? 4 : 2;
+      item.quality < 0 ? (item.quality = 0) : item.quality;
+    }
+
+    item.sellIn--;
+
+    return item;
+  }
+
+  backstagePass(item) {
+    const isDoubleQuality = item.sellIn <= 10 && item.sellIn >= 6;
+    const isTripleQuality = item.sellIn <= 5 && item.sellIn > 0;
+
+    if (isDoubleQuality) {
+      item.quality += 2;
+    } else if (isTripleQuality) {
+      item.quality += 3;
+    } else {
+      item.quality++;
+    }
+
+    item.sellIn--;
+  }
 }
 
 module.exports = ItemUpdate;
